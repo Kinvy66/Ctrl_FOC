@@ -49,11 +49,11 @@ else ()
     add_compile_options(-Og -g)
 endif ()
 
-include_directories(Core/Inc Drivers/STM32G4xx_HAL_Driver/Inc Drivers/STM32G4xx_HAL_Driver/Inc/Legacy Drivers/CMSIS/Device/ST/STM32G4xx/Include Drivers/CMSIS/Include App/Inc BSP/Inc Ctrl/Common Ctrl/Drivers Ctrl/Sensors )
+include_directories(Core/Inc Drivers/STM32G4xx_HAL_Driver/Inc Drivers/STM32G4xx_HAL_Driver/Inc/Legacy Drivers/CMSIS/Device/ST/STM32G4xx/Include Drivers/CMSIS/Include Middlewares/ST/ARM/DSP/Inc App/Inc BSP/Inc Ctrl/Common Ctrl/Drivers Ctrl/Sensors Ctrl/Communication )
 
 add_definitions(-DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx)
 
-file(GLOB_RECURSE SOURCES "Core/*.*" "Drivers/*.*" "App/*.*" "Bsp/*.*" "Ctrl/*.*")
+file(GLOB_RECURSE SOURCES "Core/*.*" "Middlewares/*.*" "Drivers/*.*" "App/*.*" "Bsp/*.*" "Ctrl/*.*")
 
 set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/STM32G474RETX_FLASH.ld)
 

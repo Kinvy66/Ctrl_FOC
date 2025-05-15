@@ -48,7 +48,7 @@ else ()
     add_compile_options(-Og -g)
 endif ()
 
-include_directories(${includes} App/Inc BSP/Inc Ctrl/Common Ctrl/Drivers Ctrl/Sensors )
+include_directories(${includes} App/Inc BSP/Inc Ctrl/Common Ctrl/Drivers Ctrl/Sensors Ctrl/Communication )
 
 add_definitions(${defines})
 
