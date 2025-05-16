@@ -1,7 +1,5 @@
-
 #include "CurrentSense.h"
 #include "arm_math.h"
-
 
 // get current magnitude
 //   - absolute  - if no electrical_angle provided
