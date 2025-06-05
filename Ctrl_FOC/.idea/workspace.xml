@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="BackendCodeEditorMiscSettings">
+    <option name="/Default/CodeEditing/CppDocumentationComment/AddBriefTag/@EntryValue" value="true" type="bool" />
     <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexedValue" value="true" type="bool" />
+    <option name="/Default/Housekeeping/OptionsDialog/SelectedPageId/@EntryValue" value="CppCodeGeneration" type="string" />
   </component>
   <component name="CMakePresetLoader"><![CDATA[{
   "useNewFormat": true
@@ -35,28 +37,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="955d040c-1967-48d7-9c28-80819373ad4a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.cproject" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/project.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/OCD_Ctrl_FOC.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.mxproject" beforeDir="false" afterPath="$PROJECT_DIR$/.mxproject" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.project" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/App/Inc/app.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/App/Src/app.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bsp/Inc/key.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bsp/Inc/lcd.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bsp/Inc/lcd_display.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bsp/Inc/lcdfont.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bsp/Inc/led.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bsp/Inc/mt6816.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bsp/Src/key.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bsp/Src/lcd.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bsp/Src/lcd_display.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bsp/Src/led.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bsp/Src/mt6816.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Utils/Inc/log_debug.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists_template.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Inc/main.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/main.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Inc/stm32g4xx_hal_conf.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/stm32g4xx_hal_conf.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Inc/stm32g4xx_it.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/stm32g4xx_it.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Inc/usart.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/usart.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Inc/tim.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/tim.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Src/gpio.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/gpio.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Src/syscalls.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/syscalls.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Src/sysmem.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/sysmem.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Src/usart.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/usart.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Startup/startup_stm32g474retx.s" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Src/spi.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/spi.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Src/stm32g4xx_hal_msp.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/stm32g4xx_hal_msp.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Src/stm32g4xx_it.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/stm32g4xx_it.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Src/tim.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/tim.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ctrl_FOC.ioc" beforeDir="false" afterPath="$PROJECT_DIR$/Ctrl_FOC.ioc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/STM32G474RETX_FLASH.ld" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/STM32G474RETX_RAM.ld" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/st_nucleo_g4.cfg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,6 +92,9 @@
   &quot;associatedIndex&quot;: 0
 }</component>
   <component name="ProjectId" id="2y4FDZtHhAw0ZHgBYWNJfcF1Ux2" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -97,6 +108,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.readMode.enableVisualFormatting": "true",
     "RunOnceActivity.west.config.association.type.startup.service": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "git-widget-placeholder": "master",
@@ -106,6 +118,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "CppCodeGenerationId",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -138,7 +151,7 @@
       <option name="presentableId" value="Default" />
       <updated>1749085822182</updated>
       <workItem from="1749085823990" duration="29000" />
-      <workItem from="1749085862067" duration="1957000" />
+      <workItem from="1749085862067" duration="8345000" />
     </task>
     <servers />
   </component>
@@ -149,5 +162,9 @@
     <isAutomaticCheckingOnLaunch value="false" />
     <isAutomaticFoundErrors value="true" />
     <isAutomaticReloadCMake value="true" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

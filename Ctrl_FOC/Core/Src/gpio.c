@@ -59,7 +59,7 @@ void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(LCD_RES_GPIO_Port, LCD_RES_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(SP1_CS_GPIO_Port, SP1_CS_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(MT6816_CS_GPIO_Port, MT6816_CS_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, LCD_CS_Pin|LCD_BLK_Pin, GPIO_PIN_RESET);
@@ -90,12 +90,12 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(LCD_RES_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : SP1_CS_Pin */
-  GPIO_InitStruct.Pin = SP1_CS_Pin;
+  /*Configure GPIO pin : MT6816_CS_Pin */
+  GPIO_InitStruct.Pin = MT6816_CS_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(SP1_CS_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(MT6816_CS_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : LCD_CS_Pin LCD_BLK_Pin */
   GPIO_InitStruct.Pin = LCD_CS_Pin|LCD_BLK_Pin;

@@ -50,6 +50,7 @@ file(GLOB_RECURSE USER_SOURCES
         ./Core/Src/retarget.c
         ./Bsp/*.*
         ./App/*.*
+        ./Utils/*.*
 #        ./Ctrl/*.*
 )
 
@@ -64,6 +65,7 @@ target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
         # Add user defined include paths
         ./Bsp/Inc
         ./App/Inc
+        ./Utils/Inc
 #        ./Ctrl
 #        ./Ctrl/Common
 #        ./Ctrl/Common/BaseClass

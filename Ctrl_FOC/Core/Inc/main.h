@@ -53,7 +53,8 @@ extern "C" {
 void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
-
+uint32_t DWT_Delay_Init(void);
+void DWT_Delay_us(volatile uint32_t microseconds);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
@@ -103,15 +104,18 @@ void Error_Handler(void);
 #define LCD_DC_GPIO_Port GPIOC
 #define LCD_SDA_Pin GPIO_PIN_12
 #define LCD_SDA_GPIO_Port GPIOC
-#define SP1_CS_Pin GPIO_PIN_2
-#define SP1_CS_GPIO_Port GPIOD
+#define MT6816_CS_Pin GPIO_PIN_2
+#define MT6816_CS_GPIO_Port GPIOD
 #define LCD_CS_Pin GPIO_PIN_6
 #define LCD_CS_GPIO_Port GPIOB
 #define LCD_BLK_Pin GPIO_PIN_7
 #define LCD_BLK_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
+#define HAL_Delay_us(us)   DWT_Delay_us(us)
 
+#include "log_debug.h"
+#include "led.h"
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus
