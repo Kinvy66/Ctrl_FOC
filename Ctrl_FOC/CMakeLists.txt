@@ -51,6 +51,7 @@ file(GLOB_RECURSE USER_SOURCES
         ./Bsp/*.*
         ./App/*.*
         ./Utils/*.*
+        ./FOC_Alg/*.*
 #        ./Ctrl/*.*
 )
 
@@ -66,6 +67,7 @@ target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
         ./Bsp/Inc
         ./App/Inc
         ./Utils/Inc
+        ./FOC_Alg/Inc
 #        ./Ctrl
 #        ./Ctrl/Common
 #        ./Ctrl/Common/BaseClass

@@ -5,8 +5,6 @@
 #ifndef BLDCMOTOR_H
 #define BLDCMOTOR_H
 
-
-
 class BLDCMotor {
 
 };

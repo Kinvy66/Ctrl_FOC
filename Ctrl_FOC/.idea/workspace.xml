@@ -6,6 +6,7 @@
   <component name="BackendCodeEditorMiscSettings">
     <option name="/Default/CodeEditing/CppDocumentationComment/AddBriefTag/@EntryValue" value="true" type="bool" />
     <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexedValue" value="true" type="bool" />
+    <option name="/Default/Housekeeping/LiveTemplatesHousekeeping/HotspotSessionHintIsShown/@EntryValue" value="true" type="bool" />
     <option name="/Default/Housekeeping/OptionsDialog/SelectedPageId/@EntryValue" value="CppCodeGeneration" type="string" />
   </component>
   <component name="CMakePresetLoader"><![CDATA[{
@@ -21,6 +22,7 @@
     <generated>
       <config projectName="Ctrl_FOC" targetName="Ctrl_FOC" />
       <config projectName="Ctrl_FOC" targetName="STM32_Drivers" />
+      <config projectName="Ctrl_FOC" targetName="USB_Device_Library" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -37,34 +39,48 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="955d040c-1967-48d7-9c28-80819373ad4a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/Inc/app.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/Src/app.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bsp/Inc/key.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bsp/Inc/lcd.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bsp/Inc/lcd_display.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bsp/Inc/lcdfont.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bsp/Inc/led.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bsp/Inc/mt6816.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bsp/Src/key.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bsp/Src/lcd.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bsp/Src/lcd_display.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bsp/Src/led.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bsp/Src/mt6816.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Utils/Inc/log_debug.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ctrl/Sensors/MagneticSensorSPI.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ctrl/Sensors/MagneticSensorSPI.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_pcd.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_pcd_ex.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_usb.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pcd.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pcd_ex.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usb.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FOC_Alg/Inc/encoder.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FOC_Alg/Src/encoder.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc/usbd_cdc.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/USB_Device/App/usb_device.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/USB_Device/App/usb_device.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/USB_Device/App/usbd_cdc_if.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/USB_Device/App/usbd_cdc_if.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/USB_Device/App/usbd_desc.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/USB_Device/App/usbd_desc.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/USB_Device/Target/usbd_conf.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/USB_Device/Target/usbd_conf.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Utils/Inc/vofa.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Utils/Src/vofa.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mxproject" beforeDir="false" afterPath="$PROJECT_DIR$/.mxproject" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bsp/Src/mt6816.c" beforeDir="false" afterPath="$PROJECT_DIR$/Bsp/Src/mt6816.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Inc/main.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/main.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Inc/stm32g4xx_hal_conf.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/stm32g4xx_hal_conf.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Inc/stm32g4xx_it.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/stm32g4xx_it.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Inc/tim.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/tim.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Src/gpio.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/gpio.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Src/spi.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/spi.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Src/stm32g4xx_hal_msp.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/stm32g4xx_hal_msp.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Src/stm32g4xx_it.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/stm32g4xx_it.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Src/tim.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/tim.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ctrl/Motors/BLDCMotor.h" beforeDir="false" afterPath="$PROJECT_DIR$/Ctrl/Motors/BLDCMotor.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ctrl/stm32_simple_foc.h" beforeDir="false" afterPath="$PROJECT_DIR$/Ctrl/stm32_simple_foc.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ctrl_FOC.ioc" beforeDir="false" afterPath="$PROJECT_DIR$/Ctrl_FOC.ioc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/stm32cubemx/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/stm32cubemx/CMakeLists.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +95,8 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Ctrl/Common/BaseClass/Sensor.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Ctrl/Common/BaseClass/Sensor.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Ctrl/Sensors/MagneticSensorSPI.cpp" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectApplicationVersion">
     <option name="ide" value="CLion" />
@@ -113,15 +130,22 @@
     "cidr.known.project.marker": "true",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "E:/Rep/Kinvy/FOC_Firmware/Ctrl_FOC/Ctrl_FOC/Ctrl/Drivers",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "CppCodeGenerationId",
+    "settings.editor.selected.configurable": "com.jetbrains.cidr.cpp.execution.gdbserver.debugtargets.NamedDebugTargetConfigurable",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Rep\Kinvy\FOC_Firmware\Ctrl_FOC\Ctrl_FOC\Ctrl\Drivers" />
+      <recent name="E:\Rep\Kinvy\FOC_Firmware\Ctrl_FOC\Ctrl_FOC\Ctrl\Sensors" />
+    </key>
+  </component>
   <component name="RunManager" selected="CMake Application.Ctrl_FOC">
     <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
@@ -138,9 +162,15 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <configuration name="USB_Device_Library" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Ctrl_FOC" TARGET_NAME="USB_Device_Library" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="CMake Application.Ctrl_FOC" />
       <item itemvalue="CMake Application.STM32_Drivers" />
+      <item itemvalue="CMake Application.USB_Device_Library" />
     </list>
   </component>
   <component name="TaskManager">
@@ -151,7 +181,7 @@
       <option name="presentableId" value="Default" />
       <updated>1749085822182</updated>
       <workItem from="1749085823990" duration="29000" />
-      <workItem from="1749085862067" duration="8345000" />
+      <workItem from="1749085862067" duration="20661000" />
     </task>
     <servers />
   </component>

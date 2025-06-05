@@ -6,6 +6,7 @@
 #define MT6816_CS_1()		MT6816_CS_GPIO_Port->BSRR = MT6816_CS_Pin
 #define MT6816_SPI          hspi1
 
+
 /**
  * @brief 通过SPI从MT6816获取角度数据并转换为弧度 [0, 2π]
  * @param [out] _angle
