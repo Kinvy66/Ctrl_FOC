@@ -66,7 +66,9 @@ void LCD_ShowFloatNum(uint16_t x, uint16_t y, float num, uint8_t len, uint8_t de
 void LCD_ShowFloatNum1(uint16_t x, uint16_t y, float num, uint8_t len, uint8_t decimal, uint16_t fc, uint16_t bc, uint8_t sizey);	// 显示正的浮点数
 
 void LCD_ShowPicture(uint16_t x,uint16_t y,uint16_t length,uint16_t width,const uint8_t pic[]); //显示图片
-
+void LCD_Demo(void); //LCD演示函数
+void LCD_Disable(void);
+void LCD_Draw_FOC_Calibration(void);
 
 //画笔颜色
 

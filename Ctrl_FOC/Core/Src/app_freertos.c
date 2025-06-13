@@ -47,9 +47,8 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
-static TaskHandle_t xHandleTaskLCD_ECAT = NULL;
+static TaskHandle_t xHandleTaskLCD = NULL;
 static TaskHandle_t xHandleTaskUserIF = NULL;
-static TaskHandle_t xHandleTaskUartShell = NULL;
 static TaskHandle_t xHandleTaskStart = NULL;
 
 SemaphoreHandle_t xTxSemaphore;  // 用于发送完成的信号量
@@ -163,20 +162,21 @@ void StartDefaultTask(void *argument)
 /* USER CODE BEGIN Application */
 /*
 *********************************************************************************************************
-*	函 数 名: AppTaskLCD_ECAT
+*	函 数 名: AppTaskLCD
 *	功能说明: SPI3任务(LCD屏幕或ECAT)
 *	形    参: 无
 *	返 回 值: 无
 * 优 先 级: osPriorityNormal3
 *********************************************************************************************************
 */
-static void AppTaskLCD_ECAT(void *argument)
+static void AppTaskLCD(void *argument)
 {
 	// int32_t	spi_ctrl_last = SPI3_Ctrl; /* 设置最新状态为CONTROL_LCD */
 	/* 初始化任务 */
-
+	// LCD_Init();
 	while(1)
 	{
+		LCD_Demo();
 		vTaskDelay(1);
 	}
 }
@@ -283,26 +283,7 @@ static void AppTaskUserIF(void *argument)
 		vTaskDelay(20);
 	}
 }
-/*
-*********************************************************************************************************
-*	函 数 名: AppTaskUartShell
-*	功能说明: 串口shell任务，用于接收串口数据，并执行相关命令。
-*	形    参: 无
-*	返 回 值: 无
-* 优 先 级: osPriorityNormal5
-*********************************************************************************************************
-*/
-static void AppTaskUartShell(void *argument)
-{
-	/* 初始化任务 */
 
-	while(1)
-	{
-		/* 需要周期性处理的程序 */
-		// shellTask(&shell);
-		vTaskDelay(1);
-	}
-}
 /*
 *********************************************************************************************************
 *	函 数 名: AppTaskStart
@@ -319,12 +300,9 @@ static void AppTaskStart(void *argument)
 
 	/* 初始化组件 */
 	bsp_InitKey();		 				/* 按键初始化 */
-	// bsp_spi3_manager_init();  			/* SPI3控制管理初始化 */
-	// bsp_spi3_Lcd_Init();
 	LCD_Init();							/* LCD屏幕初始化 */
 	// User_Shell_Init(); 					/* letter-shell初始化 */
 	foc_alg_init();						/* FOC初始化 */
-
 
 	/* 创建任务 */
 	AppTaskCreate();
@@ -332,7 +310,6 @@ static void AppTaskStart(void *argument)
 	while(1)
 	{
 		/* 需要周期性处理的程序 */
-
 
 		/* 1ms 处理 */
 		// bsp_RunPer1ms();
@@ -358,56 +335,40 @@ static void AppTaskCreate(void)
 {
 	BaseType_t status;
 
-	status = xTaskCreate(  AppTaskLCD_ECAT,  			 		 /* 任务函数  */
-												"AppTaskLCD_ECAT", 			 		 /* 任务名    */
-												512,                 		 		 /* 任务栈大小，单位word，也就是4字节 */
-												NULL,                 	 		 /* 任务参数  */
-												osPriorityNormal3,    	 		 /* 任务优先级*/
-												&xHandleTaskLCD_ECAT );   	 /* 任务句柄  */
+	status = xTaskCreate(AppTaskLCD,  			 		 /* 任务函数  */
+						 "AppTaskLCD", 			 		 /* 任务名    */
+						 512,                 		 	 /* 任务栈大小，单位word，也就是4字节 */
+						 NULL,                 	 		 /* 任务参数  */
+						 osPriorityNormal3,    	 		 /* 任务优先级*/
+						 &xHandleTaskLCD );   			/* 任务句柄  */
 	if ( pdPASS == status)
 	{
-		// shellPrint(&shell, "[AppTaskCreate]:AppTaskLCD_ECAT task create success\r\n");
+		debug_print("[AppTaskCreate]:AppTaskLCD task create success\r\n");
 
 	}
 	else
 	{
-		// shellPrint(&shell, "[AppTaskCreate]:AppTaskLCD_ECAT task create failed\r\n");
+		debug_print("[AppTaskCreate]:AppTaskLCD task create failed\r\n");
+
 	}
 
-	status = xTaskCreate(  AppTaskUserIF,  			 	 /* 任务函数  */
-												"AppTaskUserIF", 			 	 /* 任务名    */
-												256,                 		 /* 任务栈大小，单位word，也就是4字节 */
-												NULL,                 	 /* 任务参数  */
-												osPriorityNormal4,    	 /* 任务优先级*/
-												&xHandleTaskUserIF );    /* 任务句柄  */
+	status = xTaskCreate(AppTaskUserIF,  				/* 任务函数  */
+						 "AppTaskUserIF", 			 	/* 任务名    */
+						 256,                 			/* 任务栈大小，单位word，也就是4字节 */
+						 NULL,                 			/* 任务参数  */
+						 osPriorityNormal4,    			/* 任务优先级*/
+						 &xHandleTaskUserIF );			/* 任务句柄  */
 	if ( pdPASS == status)
 	{
-		// shellPrint(&shell, "[AppTaskCreate]:AppTaskUserIF task create success\r\n");
-
+		debug_print("[AppTaskCreate]:AppTaskUserIF task create success\r\n");
 	}
 	else
 	{
-		// shellPrint(&shell, "[AppTaskCreate]:AppTaskUserIF task create failed\r\n");
-	}
-
-	status = xTaskCreate(  AppTaskUartShell,  			 /* 任务函数  */
-												"AppTaskUartShell", 			 /* 任务名    */
-												512,                 			 /* 任务栈大小，单位word，也就是4字节 */
-												NULL,                 		 /* 任务参数  */
-												osPriorityNormal5,    		 /* 任务优先级*/
-												&xHandleTaskUartShell );   /* 任务句柄  */
-	if ( pdPASS == status)
-	{
-		// shellPrint(&shell, "[AppTaskCreate]:AppTaskUartShell task create success\r\n");
-
-	}
-	else
-	{
-		// shellPrint(&shell, "[AppTaskCreate]:AppTaskUartShell task create failed\r\n");
+		debug_print("[AppTaskCreate]:AppTaskUserIF task create failed\r\n");
 
 	}
 
-	// shellPrint(&shell, "*************************************************************\r\n");
+	debug_print("*************************************************************\r\n");
 }
 
 /*
@@ -477,23 +438,11 @@ void PrintfLogo(void)
 	CPU_Sn0 = HAL_GetUIDw0();
 	CPU_Sn1 = HAL_GetUIDw1();
 	CPU_Sn2 = HAL_GetUIDw2();
- //
-	// shellPrint(&shell, "*************************************************************\r\n");
-	// shellPrint(&shell, "    __________  ______   ______________ \r\n");
-	// shellPrint(&shell, "   / ____/ __ \\/ ____/  / ____/_  __/ / \r\n");
-	// shellPrint(&shell, "  / /_  / / / / /      / /     / / / /  \r\n");
-	// shellPrint(&shell, " / __/ / /_/ / /___   / /___  / / / /___\r\n");
-	// shellPrint(&shell, "/_/    \\____/\\____/   \\____/ /_/ /_____/\r\n");
-	// shellPrint(&shell, "                                        \r\n");
-	// shellPrint(&shell, "Build:       "__DATE__" "__TIME__"\r\n");
-	// shellPrint(&shell, "Version:     "SOFTWARE_VERSION"\r\n");
-	// shellPrint(&shell, "Copyright:   (C) 2025 astronG\r\n");
-	// shellPrint(&shell, "-------------------------------------------------------------\r\n");
-	// shellPrint(&shell, "CPU: STM32G474RET6, SYSCLK: %dMHz, RAM: 128KB, ROM: 512KB\r\n", SystemCoreClock / 1000000);
-	// shellPrint(&shell, "UID: %08X %08X %08X\r\n", CPU_Sn2, CPU_Sn1, CPU_Sn0);
-	// shellPrint(&shell, "STM32G4xx_HAL_Driver:STM32Cube_FW_G4 V1.6.1\r\n");
-	// shellPrint(&shell, "Current version of FOC Algorithm: %s\r\n", FOC_ALG_SOFTWARE_VERSION);
- //  shellPrint(&shell, "*************************************************************\r\n");
+
+	debug_print("-------------------------------------------------------------\r\n");
+	debug_print("CPU: STM32G474RET6, SYSCLK: %dMHz, RAM: 128KB, ROM: 512KB\r\n", SystemCoreClock / 1000000);
+	debug_print("UID: %08X %08X %08X\r\n", CPU_Sn2, CPU_Sn1, CPU_Sn0);
+
 }
 /* USER CODE END Application */
 

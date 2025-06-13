@@ -40,40 +40,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="955d040c-1967-48d7-9c28-80819373ad4a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Bsp/Inc/debug_usart.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bsp/Src/debug_usart.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bsp/bsp.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bsp/bsp.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FOC_Alg/Inc/calibration.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FOC_Alg/Inc/foc.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FOC_Alg/Inc/mc_fsm.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FOC_Alg/Inc/pid.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FOC_Alg/Inc/pwm_curr.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FOC_Alg/Inc/usr_config.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FOC_Alg/Inc/utils.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FOC_Alg/Src/calibration.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FOC_Alg/Src/foc.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FOC_Alg/Src/mc_fsm.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FOC_Alg/Src/pid.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FOC_Alg/Src/pwm_curr.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FOC_Alg/Src/usr_config.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FOC_Alg/Src/utils.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FOC_Alg/foc_alg.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FOC_Alg/foc_alg.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Utils/Inc/chry_ringbuffer.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Utils/Src/chry_ringbuffer.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Core/Inc/dma.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Core/Src/dma.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.mxproject" beforeDir="false" afterPath="$PROJECT_DIR$/.mxproject" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bsp/Inc/key.h" beforeDir="false" afterPath="$PROJECT_DIR$/Bsp/Inc/key.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bsp/Src/key.c" beforeDir="false" afterPath="$PROJECT_DIR$/Bsp/Src/key.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bsp/Inc/lcd.h" beforeDir="false" afterPath="$PROJECT_DIR$/Bsp/Inc/lcd.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bsp/Inc/lcd_display.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bsp/Src/lcd.c" beforeDir="false" afterPath="$PROJECT_DIR$/Bsp/Src/lcd.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bsp/Src/lcd_display.c" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Inc/main.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/main.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Inc/stm32g4xx_hal_conf.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/stm32g4xx_hal_conf.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Inc/stm32g4xx_it.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/stm32g4xx_it.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Inc/tim.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/tim.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Src/adc.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/adc.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Src/app_freertos.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/app_freertos.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Src/gpio.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/gpio.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Src/stm32g4xx_hal_msp.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/stm32g4xx_hal_msp.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Src/stm32g4xx_it.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/stm32g4xx_it.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Src/tim.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/tim.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Src/usart.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/usart.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ctrl_FOC.ioc" beforeDir="false" afterPath="$PROJECT_DIR$/Ctrl_FOC.ioc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/USB_Device/Target/usbd_conf.c" beforeDir="false" afterPath="$PROJECT_DIR$/USB_Device/Target/usbd_conf.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake/stm32cubemx/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/stm32cubemx/CMakeLists.txt" afterDir="false" />
@@ -132,7 +116,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;fileTemplates&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -146,11 +130,6 @@
     </key>
   </component>
   <component name="RunManager" selected="CMake Application.Ctrl_FOC">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Ctrl_FOC" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Ctrl_FOC" TARGET_NAME="Ctrl_FOC" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Ctrl_FOC" RUN_TARGET_NAME="Ctrl_FOC">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -167,6 +146,11 @@
       </method>
     </configuration>
     <configuration name="USB_Device_Library" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Ctrl_FOC" TARGET_NAME="USB_Device_Library" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -188,7 +172,8 @@
       <workItem from="1749085823990" duration="29000" />
       <workItem from="1749085862067" duration="21242000" />
       <workItem from="1749776600125" duration="898000" />
-      <workItem from="1749777544941" duration="6629000" />
+      <workItem from="1749777544941" duration="13295000" />
+      <workItem from="1749799774553" duration="2656000" />
     </task>
     <servers />
   </component>
