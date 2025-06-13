@@ -52,6 +52,7 @@ file(GLOB_RECURSE USER_SOURCES
         ./App/*.*
         ./Utils/*.*
         ./FOC_Alg/*.*
+#        ./letter-shell-3.1.2/*.*
 #        ./Ctrl/*.*
 )
 
@@ -65,9 +66,12 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
         # Add user defined include paths
         ./Bsp/Inc
+        ./Bsp
         ./App/Inc
         ./Utils/Inc
         ./FOC_Alg/Inc
+        ./FOC_Alg
+#        ./letter-shell-3.1.2
 #        ./Ctrl
 #        ./Ctrl/Common
 #        ./Ctrl/Common/BaseClass

@@ -112,6 +112,14 @@ void DWT_Delay_us(volatile uint32_t microseconds);
 #define LCD_BLK_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
+#define PWM_PERIOD_CYCLES (uint16_t)((TIMER1_CLK_MHz * (uint32_t) 1000000u / ((uint32_t) (PWM_FREQUENCY))) & 0xFFFE)
+#define PWM_FREQUENCY 20000
+#define TIMER1_CLK_MHz 170
+#define HALF_PWM_PERIOD_CYCLES (uint16_t)(PWM_PERIOD_CYCLES / 2U)
+#define TIM7_PERIOD_CYCLES (uint16_t)((TIMER7_CLK_MHz * (uint32_t) 1000000u / ((uint32_t) (TIM7_FREQUENCY))) & 0xFFFE)
+#define TIM7_FREQUENCY 20000
+#define TIMER7_CLK_MHz 170
+
 #define HAL_Delay_us(us)   DWT_Delay_us(us)
 
 #include "log_debug.h"
