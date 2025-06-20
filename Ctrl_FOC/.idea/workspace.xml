@@ -6,8 +6,10 @@
   <component name="BackendCodeEditorMiscSettings">
     <option name="/Default/CodeEditing/CppDocumentationComment/AddBriefTag/@EntryValue" value="true" type="bool" />
     <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexedValue" value="true" type="bool" />
+    <option name="/Default/Housekeeping/GlobalSettingsUpgraded/IsUpgraded/@EntryValue" value="true" type="bool" />
     <option name="/Default/Housekeeping/LiveTemplatesHousekeeping/HotspotSessionHintIsShown/@EntryValue" value="true" type="bool" />
     <option name="/Default/Housekeeping/OptionsDialog/SelectedPageId/@EntryValue" value="CppCodeGeneration" type="string" />
+    <option name="/Default/RiderDebugger/RiderRestoreDecompile/RestoreDecompileSetting/@EntryValue" value="false" type="bool" />
   </component>
   <component name="CMakePresetLoader">{
   &quot;useNewFormat&quot;: true
@@ -22,7 +24,6 @@
     <generated>
       <config projectName="Ctrl_FOC" targetName="Ctrl_FOC" />
       <config projectName="Ctrl_FOC" targetName="STM32_Drivers" />
-      <config projectName="Ctrl_FOC" targetName="FreeRTOS" />
       <config projectName="Ctrl_FOC" targetName="USB_Device_Library" />
     </generated>
   </component>
@@ -40,27 +41,123 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="955d040c-1967-48d7-9c28-80819373ad4a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Core/Inc/dma.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Core/Src/dma.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bsp/Inc/hal_key.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bsp/Src/hal_key.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FOC/Inc/encoder.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FOC/Inc/mc_task.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FOC/Inc/trans.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FOC/Src/encoder.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FOC/Src/mc_task.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FOC/Src/trans.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.mxproject" beforeDir="false" afterPath="$PROJECT_DIR$/.mxproject" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bsp/Inc/debug_usart.h" beforeDir="false" afterPath="$PROJECT_DIR$/Bsp/Inc/debug_usart.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bsp/Inc/key.h" beforeDir="false" afterPath="$PROJECT_DIR$/Bsp/Inc/key.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Bsp/Inc/lcd.h" beforeDir="false" afterPath="$PROJECT_DIR$/Bsp/Inc/lcd.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bsp/Inc/lcd_display.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bsp/Inc/mt6816.h" beforeDir="false" afterPath="$PROJECT_DIR$/Bsp/Inc/mt6816.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bsp/Src/debug_usart.c" beforeDir="false" afterPath="$PROJECT_DIR$/Bsp/Src/debug_usart.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bsp/Src/key.c" beforeDir="false" afterPath="$PROJECT_DIR$/Bsp/Src/key.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Bsp/Src/lcd.c" beforeDir="false" afterPath="$PROJECT_DIR$/Bsp/Src/lcd.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bsp/Src/lcd_display.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bsp/bsp.h" beforeDir="false" afterPath="$PROJECT_DIR$/Bsp/bsp.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Inc/FreeRTOSConfig.h" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Inc/main.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/main.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Inc/stm32g4xx_it.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/stm32g4xx_it.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Inc/tim.h" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Inc/tim.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Src/adc.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/adc.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Src/app_freertos.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/app_freertos.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Src/gpio.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/gpio.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Src/app_freertos.c" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Src/spi.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/spi.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Src/stm32g4xx_hal_msp.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/stm32g4xx_hal_msp.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Src/stm32g4xx_it.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/stm32g4xx_it.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/Src/tim.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/tim.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Src/usart.c" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Src/usart.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ctrl/Common/BaseClass/BLDCDriver.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ctrl/Common/BaseClass/CurrentSense.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ctrl/Common/BaseClass/CurrentSense.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ctrl/Common/BaseClass/FOCDriver.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ctrl/Common/BaseClass/FOCMotor.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ctrl/Common/BaseClass/FOCMotor.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ctrl/Common/BaseClass/Sensor.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ctrl/Common/BaseClass/Sensor.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ctrl/Common/BaseClass/StepperDriver.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ctrl/Common/defaults.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ctrl/Common/foc_utils.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ctrl/Common/foc_utils.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ctrl/Common/lowpass_filter.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ctrl/Common/lowpass_filter.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ctrl/Common/pid.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ctrl/Common/pid.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ctrl/Common/time_utils.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ctrl/Common/time_utils.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ctrl/Motors/BLDCMotor.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ctrl/Motors/BLDCMotor.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ctrl/Sensors/GenericSensor.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ctrl/Sensors/GenericSensor.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ctrl/Sensors/MagneticSensorSPI.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ctrl/Sensors/MagneticSensorSPI.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ctrl/stm32_simple_foc.h" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Ctrl_FOC.ioc" beforeDir="false" afterPath="$PROJECT_DIR$/Ctrl_FOC.ioc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/USB_Device/Target/usbd_conf.c" beforeDir="false" afterPath="$PROJECT_DIR$/USB_Device/Target/usbd_conf.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FOC_Alg/Inc/calibration.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FOC_Alg/Inc/encoder.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FOC_Alg/Inc/foc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FOC_Alg/Inc/mc_fsm.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FOC_Alg/Inc/pid.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FOC_Alg/Inc/pwm_curr.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FOC_Alg/Inc/usr_config.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FOC_Alg/Inc/utils.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FOC_Alg/Src/calibration.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FOC_Alg/Src/encoder.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FOC_Alg/Src/foc.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FOC_Alg/Src/mc_fsm.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FOC_Alg/Src/pid.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FOC_Alg/Src/pwm_curr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FOC_Alg/Src/usr_config.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FOC_Alg/Src/utils.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FOC_Alg/foc_alg.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FOC_Alg/foc_alg.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/freertos_mpool.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/freertos_os2.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Middlewares/Third_Party/FreeRTOS/Source/croutine.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Middlewares/Third_Party/FreeRTOS/Source/event_groups.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Middlewares/Third_Party/FreeRTOS/Source/include/StackMacros.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Middlewares/Third_Party/FreeRTOS/Source/include/atomic.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Middlewares/Third_Party/FreeRTOS/Source/include/croutine.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Middlewares/Third_Party/FreeRTOS/Source/include/list.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Middlewares/Third_Party/FreeRTOS/Source/include/message_buffer.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Middlewares/Third_Party/FreeRTOS/Source/include/mpu_prototypes.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Middlewares/Third_Party/FreeRTOS/Source/include/portable.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Middlewares/Third_Party/FreeRTOS/Source/include/queue.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Middlewares/Third_Party/FreeRTOS/Source/include/stack_macros.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Middlewares/Third_Party/FreeRTOS/Source/include/stream_buffer.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Middlewares/Third_Party/FreeRTOS/Source/include/task.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Middlewares/Third_Party/FreeRTOS/Source/include/timers.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Middlewares/Third_Party/FreeRTOS/Source/list.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/port.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Middlewares/Third_Party/FreeRTOS/Source/queue.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Middlewares/Third_Party/FreeRTOS/Source/stream_buffer.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Middlewares/Third_Party/FreeRTOS/Source/tasks.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Middlewares/Third_Party/FreeRTOS/Source/timers.c" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake/stm32cubemx/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/stm32cubemx/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/letter-shell-3.1.2/shell.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/letter-shell-3.1.2/shell.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/letter-shell-3.1.2/shell_cfg.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/letter-shell-3.1.2/shell_cmd_list.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/letter-shell-3.1.2/shell_companion.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/letter-shell-3.1.2/shell_ext.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/letter-shell-3.1.2/shell_ext.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/letter-shell-3.1.2/shell_port.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/letter-shell-3.1.2/shell_port.h" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,8 +172,11 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Ctrl/Common/BaseClass/Sensor.cpp" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Ctrl/Sensors/MagneticSensorSPI.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/FOC/Inc/calibration.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/FOC/Inc/encoder.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/FOC/Inc/pwm_curr.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/FOC/Inc/utils.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/FOC/Src/utils.c" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectApplicationVersion">
     <option name="ide" value="CLion" />
@@ -110,18 +210,20 @@
     &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/Rep/Kinvy/FOC_Firmware/Ctrl_FOC/Ctrl_FOC/Ctrl/Drivers&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/Rep/Kinvy/FOC_Firmware/Ctrl_FOC/Ctrl_FOC/Bsp/Src&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;fileTemplates&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Rep\Kinvy\FOC_Firmware\Ctrl_FOC\Ctrl_FOC\Bsp\Src" />
+      <recent name="E:\Rep\Kinvy\FOC_Firmware\Ctrl_FOC\Ctrl_FOC\Bsp\Inc" />
       <recent name="E:\Rep\Kinvy\FOC_Firmware\Ctrl_FOC\Ctrl_FOC\Ctrl\Drivers" />
       <recent name="E:\Rep\Kinvy\FOC_Firmware\Ctrl_FOC\Ctrl_FOC\Ctrl\Sensors" />
     </key>
@@ -131,11 +233,6 @@
   </component>
   <component name="RunManager" selected="CMake Application.Ctrl_FOC">
     <configuration name="Ctrl_FOC" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Ctrl_FOC" TARGET_NAME="Ctrl_FOC" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Ctrl_FOC" RUN_TARGET_NAME="Ctrl_FOC">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="FreeRTOS" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Ctrl_FOC" TARGET_NAME="FreeRTOS" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -157,7 +254,6 @@
     </configuration>
     <list>
       <item itemvalue="CMake Application.Ctrl_FOC" />
-      <item itemvalue="CMake Application.FreeRTOS" />
       <item itemvalue="CMake Application.STM32_Drivers" />
       <item itemvalue="CMake Application.USB_Device_Library" />
     </list>
@@ -174,6 +270,8 @@
       <workItem from="1749776600125" duration="898000" />
       <workItem from="1749777544941" duration="13295000" />
       <workItem from="1749799774553" duration="2656000" />
+      <workItem from="1750386053509" duration="2850000" />
+      <workItem from="1750389088938" duration="15487000" />
     </task>
     <servers />
   </component>

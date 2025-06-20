@@ -1,12 +1,7 @@
 #ifndef __BSP_H
 #define __BSP_H
 
-
-
-#define HARDWARE_VERSION               "V1.0.0"
-#define SOFTWARE_VERSION               "V1.0.0"
-
-#define USE_FreeRTOS 1	/* 使能FreeRTOS */
+#define USE_FreeRTOS 0	/* 使能FreeRTOS */
 
 /* 包含FreeRTOS头文件 */
 #if USE_FreeRTOS == 1
@@ -47,7 +42,6 @@
 #include "debug_usart.h"
 #include "chry_ringbuffer.h"
 // #include "shell_port.h"
-#include "foc_alg.h"
 
 
 #endif //__BSP_H

@@ -4,9 +4,9 @@
 #include  "main.h"
 
 /**
- * @brief
+ * @brief 读取mt6816角度，单位rad
  * @param [out] angle
- * @return
+ * @return 0, 成功  1,失败
  */
 uint8_t mt6816_get_angle(float *_angle);
 

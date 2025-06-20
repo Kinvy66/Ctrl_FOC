@@ -72,6 +72,12 @@ void DWT_Delay_us(volatile uint32_t microseconds);
 #define IA_GPIO_Port GPIOA
 #define ADSPE_Pin GPIO_PIN_4
 #define ADSPE_GPIO_Port GPIOC
+#define LIN1_Pin GPIO_PIN_13
+#define LIN1_GPIO_Port GPIOB
+#define LIN2_Pin GPIO_PIN_14
+#define LIN2_GPIO_Port GPIOB
+#define LIN3_Pin GPIO_PIN_15
+#define LIN3_GPIO_Port GPIOB
 #define KEY4_Pin GPIO_PIN_6
 #define KEY4_GPIO_Port GPIOC
 #define KEY3_Pin GPIO_PIN_7
@@ -80,6 +86,12 @@ void DWT_Delay_us(volatile uint32_t microseconds);
 #define KEY2_GPIO_Port GPIOC
 #define KEY1_Pin GPIO_PIN_9
 #define KEY1_GPIO_Port GPIOC
+#define HIN1_Pin GPIO_PIN_8
+#define HIN1_GPIO_Port GPIOA
+#define HIN2_Pin GPIO_PIN_9
+#define HIN2_GPIO_Port GPIOA
+#define HIN3_Pin GPIO_PIN_10
+#define HIN3_GPIO_Port GPIOA
 #define LCD_RES_Pin GPIO_PIN_15
 #define LCD_RES_GPIO_Port GPIOA
 #define LCD_SCK_Pin GPIO_PIN_10

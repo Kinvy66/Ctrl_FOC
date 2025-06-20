@@ -1,512 +1,165 @@
+/**
+* @file key.cpp
+* @author Kinvy
+* @email kinvy66@163.com
+* @date: 2025/6/20 11:04
+* @description: 
+**/
 #include "key.h"
 
-#define HARD_KEY_NUM	    4	   							/* 实体按键个数 */
-#define KEY_COUNT   	 	(HARD_KEY_NUM + 1)	/* 4个独立建 + 0个组合按键 */
-
-///* 使能GPIO时钟 */
-//#define ALL_KEY_GPIO_CLK_ENABLE() {	\
-//		__HAL_RCC_GPIOB_CLK_ENABLE();	\
-//		__HAL_RCC_GPIOC_CLK_ENABLE();	\
-//		__HAL_RCC_GPIOG_CLK_ENABLE();	\
-//		__HAL_RCC_GPIOH_CLK_ENABLE();	\
-//		__HAL_RCC_GPIOI_CLK_ENABLE();	\
-//	};
-
-/* 依次定义GPIO */
-typedef struct
+typedef enum
 {
-	GPIO_TypeDef* gpio;
-	uint16_t pin;
-	uint8_t ActiveLevel;	/* 激活电平 */
-}X_GPIO_T;
+    NONE_KEY,
+    KEY1_CLICKED,
+    KEY1_DBLCLICKED,
+    KEY1_LONGCLICKED,
+    KEY2_CLICKED,
+    KEY2_DBLCLICKED,
+    KEY2_LONGCLICKED,
+    KEY3_CLICKED,
+    KEY3_DBLCLICKED,
+    KEY3_LONGCLICKED,
+    KEY4_CLICKED,
+    KEY4_DBLCLICKED,
+    KEY4_LONGCLICKED,
+} KeyValue ;
 
-/* GPIO和PIN定义 */
-static const X_GPIO_T s_gpio_list[HARD_KEY_NUM] = {
-	{KEY1_GPIO_Port, KEY1_Pin, 0},		/* K1 */
-	{KEY2_GPIO_Port, KEY2_Pin, 0},		/* K2 */
-	{KEY3_GPIO_Port, KEY3_Pin, 0},		/* K3 */
-	{KEY4_GPIO_Port, KEY4_Pin, 0},		/* K4 */	
-};	
+uint8_t g_key_value = NONE_KEY;
 
-/* 定义一个宏函数简化后续代码 
-	判断GPIO引脚是否有效按下
-*/
-static KEY_T s_tBtn[KEY_COUNT] = {0};
-static KEY_FIFO_T s_tKey;		/* 按键FIFO变量,结构体 */
+keyCategory_t keys[KEY_NUM] = {
+    [KEY1] = {
+        .fsm.keyGpio.keyPort = KEY1_GPIO_Port,
+        .fsm.keyGpio.keyPin = KEY1_Pin,
+        .fsm.keyShield = ENABLE,
+        .fsm.keyDownLevel = Bit_RESET,
+        .func.ShortPressCb = key1_short_press,
+        .func.longPressCb = key1_long_press,
+        .func.dbclPressCb = key1_dbclk_press,
+    },
+    [KEY2] = {
+        .fsm.keyGpio.keyPort = KEY2_GPIO_Port,
+        .fsm.keyGpio.keyPin = KEY2_Pin,
+        .fsm.keyShield = ENABLE,
+        .fsm.keyDownLevel = Bit_RESET,
+        .func.ShortPressCb = key2_short_press,
+        .func.longPressCb = key2_long_press,
+        .func.dbclPressCb = key2_dbclk_press,
+    },
+    [KEY3] = {
+        .fsm.keyGpio.keyPort = KEY3_GPIO_Port,
+        .fsm.keyGpio.keyPin = KEY3_Pin,
+        .fsm.keyShield = ENABLE,
+        .fsm.keyDownLevel = Bit_RESET,
+        .func.ShortPressCb = key3_short_press,
+        .func.longPressCb = key3_long_press,
+        .func.dbclPressCb = key3_dbclk_press,
+    },
+    [KEY4] = {
+        .fsm.keyGpio.keyPort = KEY4_GPIO_Port,
+        .fsm.keyGpio.keyPin = KEY4_Pin,
+        .fsm.keyShield = ENABLE,
+        .fsm.keyDownLevel = Bit_RESET,
+        .func.ShortPressCb = key4_short_press,
+        .func.longPressCb = key4_long_press,
+        .func.dbclPressCb = key4_dbclk_press,
+    },
+};
 
-static void bsp_InitKeyVar(void);
-//static void bsp_InitKeyHard(void);
-static void bsp_DetectKey(uint8_t i);
-
-/*
-*********************************************************************************************************
-*	函 数 名: KeyPinActive
-*	功能说明: 判断按键是否按下
-*	形    参: 无
-*	返 回 值: 返回值1 表示按下(导通），0表示未按下（释放）
-*********************************************************************************************************
-*/
-static uint8_t KeyPinActive(uint8_t _id)
+__weak void key1_short_press()
 {
-	uint8_t level;
-	
-	if ((s_gpio_list[_id].gpio->IDR & s_gpio_list[_id].pin) == 0)
-	{
-		level = 0;
-	}
-	else
-	{
-		level = 1;
-	}
-
-	if (level == s_gpio_list[_id].ActiveLevel)
-	{
-		return 1;
-	}
-	else
-	{
-		return 0;
-	}
+    g_key_value = KEY1_CLICKED;
+}
+__weak void key2_short_press()
+{
+    g_key_value = KEY2_CLICKED;
 }
 
-/*
-*********************************************************************************************************
-*	函 数 名: IsKeyDownFunc
-*	功能说明: 判断按键是否按下。单键和组合键区分。单键事件不允许有其他键按下。
-*	形    参: 无
-*	返 回 值: 返回值1 表示按下(导通），0表示未按下（释放）
-*********************************************************************************************************
-*/
-static uint8_t IsKeyDownFunc(uint8_t _id)
+__weak void key3_short_press()
 {
-	/* 实体单键 */
-	if (_id < HARD_KEY_NUM)
-	{
-		uint8_t i;
-		uint8_t count = 0;
-		uint8_t save = 255;
-		
-		/* 判断有几个键按下 */
-		for (i = 0; i < HARD_KEY_NUM; i++)
-		{
-			if (KeyPinActive(i)) 
-			{
-				count++;
-				save = i;
-			}
-		}
-		
-		if (count == 1 && save == _id)
-		{
-			return 1;	/* 只有1个键按下时才有效 */
-		}		
-
-		return 0;
-	}
-	
-	/* 组合键 K1K2 */
-	if (_id == HARD_KEY_NUM + 0)
-	{
-		if (KeyPinActive(KID_K1) && KeyPinActive(KID_K2))
-		{
-			return 1;
-		}
-		else
-		{
-			return 0;
-		}
-	}
-
-	// /* 组合键 K2K3 */
-	// if (_id == HARD_KEY_NUM + 1)
-	// {
-	// 	if (KeyPinActive(KID_K2) && KeyPinActive(KID_K3))
-	// 	{
-	// 		return 1;
-	// 	}
-	// 	else
-	// 	{
-	// 		return 0;
-	// 	}
-	// }
-
-	return 0;
+    g_key_value = KEY3_CLICKED;
 }
 
-/*
-*********************************************************************************************************
-*	函 数 名: bsp_InitKey
-*	功能说明: 初始化按键. 该函数被 bsp_Init() 调用。
-*	形    参:  无
-*	返 回 值: 无
-*********************************************************************************************************
-*/
-void bsp_InitKey(void)
+__weak void key4_short_press()
 {
-	bsp_InitKeyVar();		/* 初始化按键变量 */
-//	bsp_InitKeyHard();		/* 初始化按键硬件 */
+    g_key_value = KEY4_CLICKED;
 }
 
-///*
-//*********************************************************************************************************
-//*	函 数 名: bsp_InitKeyHard
-//*	功能说明: 配置按键对应的GPIO
-//*	形    参:  无
-//*	返 回 值: 无
-//*********************************************************************************************************
-//*/
-//static void bsp_InitKeyHard(void)
-//{	
-//	GPIO_InitTypeDef gpio_init;
-//	uint8_t i;
-
-//	/* 第1步：打开GPIO时钟 */
-//	ALL_KEY_GPIO_CLK_ENABLE();
-//	
-//	/* 第2步：配置所有的按键GPIO为浮动输入模式(实际上CPU复位后就是输入状态) */
-//	gpio_init.Mode = GPIO_MODE_INPUT;   			/* 设置输入 */
-//	gpio_init.Pull = GPIO_NOPULL;                 /* 上下拉电阻不使能 */
-//	gpio_init.Speed = GPIO_SPEED_FREQ_VERY_HIGH;  /* GPIO速度等级 */
-//	
-//	for (i = 0; i < HARD_KEY_NUM; i++)
-//	{
-//		gpio_init.Pin = s_gpio_list[i].pin;
-//		HAL_GPIO_Init(s_gpio_list[i].gpio, &gpio_init);	
-//	}
-//}
-
-/*
-*********************************************************************************************************
-*	函 数 名: bsp_InitKeyVar
-*	功能说明: 初始化按键变量
-*	形    参:  无
-*	返 回 值: 无
-*********************************************************************************************************
-*/
-static void bsp_InitKeyVar(void)
+__weak void key1_long_press()
 {
-	uint8_t i;
-
-	/* 对按键FIFO读写指针清零 */
-	s_tKey.Read = 0;
-	s_tKey.Write = 0;
-	s_tKey.Read2 = 0;
-
-	/* 给每个按键结构体成员变量赋一组缺省值 */
-	for (i = 0; i < KEY_COUNT; i++)
-	{
-		s_tBtn[i].LongTime = KEY_LONG_TIME;				/* 长按时间 0 表示不检测长按键事件 */
-		s_tBtn[i].Count = KEY_FILTER_TIME / 2;		/* 计数器设置为滤波时间的一半 */
-		s_tBtn[i].State = 0;											/* 按键缺省状态，0为未按下 */
-		s_tBtn[i].RepeatSpeed = 0;								/* 按键连发的速度，0表示不支持连发 */
-		s_tBtn[i].RepeatCount = 0;								/* 连发计数器 */
-	}
-
-	/* 如果需要单独更改某个按键的参数，可以在此单独重新赋值 */
-	
-	/* 摇杆上下左右，支持长按1秒后，自动连发 */
-	bsp_SetKeyParam(KID_K1, 100, 6);
-	bsp_SetKeyParam(KID_K2, 100, 6);
-//	bsp_SetKeyParam(KID_K3, 100, 6);
-//	bsp_SetKeyParam(KID_K4, 100, 6);
+    g_key_value = KEY1_LONGCLICKED;
 }
 
-/*
-*********************************************************************************************************
-*	函 数 名: bsp_PutKey
-*	功能说明: 将1个键值压入按键FIFO缓冲区。可用于模拟一个按键。
-*	形    参:  _KeyCode : 按键代码
-*	返 回 值: 无
-*********************************************************************************************************
-*/
-void bsp_PutKey(uint8_t _KeyCode)
+__weak void key2_long_press()
 {
-	s_tKey.Buf[s_tKey.Write] = _KeyCode;
-
-	if (++s_tKey.Write  >= KEY_FIFO_SIZE)
-	{
-		s_tKey.Write = 0;
-	}
+    g_key_value = KEY2_LONGCLICKED;
 }
 
-/*
-*********************************************************************************************************
-*	函 数 名: bsp_GetKey
-*	功能说明: 从按键FIFO缓冲区读取一个键值。
-*	形    参: 无
-*	返 回 值: 按键代码
-*********************************************************************************************************
-*/
-uint8_t bsp_GetKey(void)
+__weak void key3_long_press()
 {
-	uint8_t ret;
-
-	if (s_tKey.Read == s_tKey.Write)
-	{
-		return KEY_NONE;
-	}
-	else
-	{
-		ret = s_tKey.Buf[s_tKey.Read];
-
-		if (++s_tKey.Read >= KEY_FIFO_SIZE)
-		{
-			s_tKey.Read = 0;
-		}
-		return ret;
-	}
+    g_key_value = KEY3_LONGCLICKED;
 }
 
-/*
-*********************************************************************************************************
-*	函 数 名: bsp_GetKey2
-*	功能说明: 从按键FIFO缓冲区读取一个键值。独立的读指针。
-*	形    参:  无
-*	返 回 值: 按键代码
-*********************************************************************************************************
-*/
-uint8_t bsp_GetKey2(void)
+__weak void key4_long_press()
 {
-	uint8_t ret;
-
-	if (s_tKey.Read2 == s_tKey.Write)
-	{
-		return KEY_NONE;
-	}
-	else
-	{
-		ret = s_tKey.Buf[s_tKey.Read2];
-
-		if (++s_tKey.Read2 >= KEY_FIFO_SIZE)
-		{
-			s_tKey.Read2 = 0;
-		}
-		return ret;
-	}
+    g_key_value = KEY4_LONGCLICKED;
+}
+__weak void key1_dbclk_press()
+{
+    g_key_value = KEY1_DBLCLICKED;
+}
+__weak void key2_dbclk_press()
+{
+    g_key_value = KEY2_DBLCLICKED;
+}
+__weak void key3_dbclk_press()
+{
+    g_key_value = KEY3_DBLCLICKED;
+}
+__weak void key4_dbclk_press()
+{
+    g_key_value = KEY4_DBLCLICKED;
 }
 
-/*
-*********************************************************************************************************
-*	函 数 名: bsp_GetKeyState
-*	功能说明: 读取按键的状态
-*	形    参:  _ucKeyID : 按键ID，从0开始
-*	返 回 值: 1 表示按下， 0 表示未按下
-*********************************************************************************************************
-*/
-uint8_t bsp_GetKeyState(KEY_ID_E _ucKeyID)
+/**
+ * @brief 按键初始化
+ */
+void key_init()
 {
-	return s_tBtn[_ucKeyID].State;
+    keyParaInit(keys);
 }
 
-/*
-*********************************************************************************************************
-*	函 数 名: bsp_SetKeyParam
-*	功能说明: 设置按键参数
-*	形    参：_ucKeyID : 按键ID，从0开始
-*			     _LongTime : 长按事件时间 单位10ms
-*			     _RepeatSpeed : 连发速度 单位10ms
-*	返 回 值: 无
-*********************************************************************************************************
-*/
-void bsp_SetKeyParam(uint8_t _ucKeyID, uint16_t _LongTime, uint8_t  _RepeatSpeed)
+/**
+ * @brief 按键扫描，读取键值
+ * @return 当前键值
+ */
+uint8_t key_scan()
 {
-	s_tBtn[_ucKeyID].LongTime = _LongTime;						/* 长按时间 0 表示不检测长按键事件 */
-	s_tBtn[_ucKeyID].RepeatSpeed = _RepeatSpeed;			/* 按键连发的速度，0表示不支持连发 */
-	s_tBtn[_ucKeyID].RepeatCount = 0;									/* 连发计数器 */
+    return g_key_value;
 }
 
-/*
-*********************************************************************************************************
-*	函 数 名: bsp_ClearKey
-*	功能说明: 清空按键FIFO缓冲区
-*	形    参：无
-*	返 回 值: 按键代码
-*********************************************************************************************************
-*/
-void bsp_ClearKey(void)
+void key_cb_register(uint8_t keyId, keyEvent_t event, void (*cb)(void))
 {
-	s_tKey.Read = s_tKey.Write;
+    switch (event){
+    case NULL_Event:
+        keyTable[keyId].func.nullPressCb = cb;
+        break;
+    case SHORT_Event:
+        keyTable[keyId].func.ShortPressCb = cb;
+        break;
+    case DOWN_Event:
+        keyTable[keyId].func.downPressCb = cb;
+        break;
+    case DBCL_Event:
+        keyTable[keyId].func.dbclPressCb = cb;
+        break;
+    case LONG_Event:
+        keyTable[keyId].func.longPressCb = cb;
+        break;
+    case LAST_Event:
+        keyTable[keyId].func.lastPressCb = cb;
+        break;
+    default:
+        break;
+    }
 }
 
-/*
-*********************************************************************************************************
-*	函 数 名: bsp_DetectKey
-*	功能说明: 检测一个按键。非阻塞状态，必须被周期性的调用。
-*	形    参: IO的id， 从0开始编码
-*	返 回 值: 无
-*********************************************************************************************************
-*/
-static void bsp_DetectKey(uint8_t i)
-{
-	KEY_T *pBtn;
-
-	pBtn = &s_tBtn[i];
-	if (IsKeyDownFunc(i))
-	{
-		if (pBtn->Count < KEY_FILTER_TIME)
-		{
-			pBtn->Count = KEY_FILTER_TIME;
-		}
-		else if(pBtn->Count < 2 * KEY_FILTER_TIME)
-		{
-			pBtn->Count++;
-		}
-		else
-		{
-			if (pBtn->State == 0)
-			{
-				pBtn->State = 1;
-
-				/* 发送按钮按下的消息 */
-				bsp_PutKey((uint8_t)(3 * i + 1));
-			}
-			if (pBtn->LongTime > 0)
-			{
-				if (pBtn->LongCount < pBtn->LongTime)
-				{
-					/* 发送按钮持续按下的消息 */
-					if (++pBtn->LongCount == pBtn->LongTime)
-					{
-						/* 键值放入按键FIFO */
-						bsp_PutKey((uint8_t)(3 * i + 3));
-					}
-				}
-				else
-				{
-					if (pBtn->RepeatSpeed > 0)
-					{
-						if (++pBtn->RepeatCount >= pBtn->RepeatSpeed)
-						{
-							pBtn->RepeatCount = 0;
-							/* 常按键后，每隔10ms发送1个按键 */
-							bsp_PutKey((uint8_t)(3 * i + 1));
-						}
-					}
-				}
-			}
-		}
-	}
-	else
-	{
-		if(pBtn->Count > KEY_FILTER_TIME)
-		{
-			pBtn->Count = KEY_FILTER_TIME;
-		}
-		else if(pBtn->Count != 0)
-		{
-			pBtn->Count--;
-		}
-		else
-		{
-			if (pBtn->State == 1)
-			{
-				pBtn->State = 0;
-
-				/* 发送按钮弹起的消息 */
-				bsp_PutKey((uint8_t)(3 * i + 2));
-			}
-		}
-
-		pBtn->LongCount = 0;
-		pBtn->RepeatCount = 0;
-	}
-}
-
-/*
-*********************************************************************************************************
-*	函 数 名: bsp_DetectFastIO
-*	功能说明: 检测高速的输入IO. 1ms刷新一次
-*	形    参: IO的id， 从0开始编码
-*	返 回 值: 无
-*********************************************************************************************************
-*/
-static void bsp_DetectFastIO(uint8_t i)
-{
-	KEY_T *pBtn;
-
-	pBtn = &s_tBtn[i];
-	if (IsKeyDownFunc(i))
-	{
-		if (pBtn->State == 0)
-		{
-			pBtn->State = 1;
-
-			/* 发送按钮按下的消息 */
-			bsp_PutKey((uint8_t)(3 * i + 1));
-		}
-
-		if (pBtn->LongTime > 0)
-		{
-			if (pBtn->LongCount < pBtn->LongTime)
-			{
-				/* 发送按钮持续按下的消息 */
-				if (++pBtn->LongCount == pBtn->LongTime)
-				{
-					/* 键值放入按键FIFO */
-					bsp_PutKey((uint8_t)(3 * i + 3));
-				}
-			}
-			else
-			{
-				if (pBtn->RepeatSpeed > 0)
-				{
-					if (++pBtn->RepeatCount >= pBtn->RepeatSpeed)
-					{
-						pBtn->RepeatCount = 0;
-						/* 常按键后，每隔10ms发送1个按键 */
-						bsp_PutKey((uint8_t)(3 * i + 1));
-					}
-				}
-			}
-		}
-	}
-	else
-	{
-		if (pBtn->State == 1)
-		{
-			pBtn->State = 0;
-
-			/* 发送按钮弹起的消息 */
-			bsp_PutKey((uint8_t)(3 * i + 2));
-		}
-
-		pBtn->LongCount = 0;
-		pBtn->RepeatCount = 0;
-	}
-}
-
-/*
-*********************************************************************************************************
-*	函 数 名: bsp_KeyScan10ms
-*	功能说明: 扫描所有按键。非阻塞，被systick中断周期性的调用，10ms一次
-*	形    参: 无
-*	返 回 值: 无
-*********************************************************************************************************
-*/
-void bsp_KeyScan10ms(void)
-{
-	uint8_t i;
-
-	for (i = 0; i < KEY_COUNT; i++)
-	{
-		bsp_DetectKey(i);
-	}
-}
-
-/*
-*********************************************************************************************************
-*	函 数 名: bsp_KeyScan1ms
-*	功能说明: 扫描所有按键。非阻塞，被systick中断周期性的调用，1ms一次.
-*	形    参: 无
-*	返 回 值: 无
-*********************************************************************************************************
-*/
-void bsp_KeyScan1ms(void)
-{
-	uint8_t i;
-
-	for (i = 0; i < KEY_COUNT; i++)
-	{
-		bsp_DetectFastIO(i);
-	}
-}

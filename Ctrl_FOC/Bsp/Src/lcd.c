@@ -873,121 +873,121 @@ void LCD_Init(void)
 */
 void LCD_Demo(void)
 {
-	if (Foc.is_armed == !TRUE)
-	{
-		LCD_ShowString(10, 5,(uint8_t *)"[ERROR]", BRRED, BLACK, 32, 0);
-	}
-	else
-	{
-		LCD_ShowString(10, 5,(uint8_t *)"[READY]", GREEN, BLACK, 32, 0);
-	}
-
-
-	LCD_ShowString(130, 5,(uint8_t *)"Vbus:", WHITE, BLACK, 16, 0);
-	LCD_ShowFloatNum(170, 5, 24.12, 3, 2, GREEN, BLACK, 16);
-	LCD_ShowString(220, 5, (uint8_t *)"V", WHITE, BLACK, 16, 0);
-
-	LCD_ShowString(130, 21,(uint8_t *)"Ibus:", WHITE, BLACK, 16, 0);
-	LCD_ShowFloatNum(170, 21, 00.00, 3, 2, GREEN, BLACK, 16);
-	LCD_ShowString(220, 21, (uint8_t *)"A", WHITE, BLACK, 16, 0);
-
-	LCD_ShowString(130, 37,(uint8_t *)"Tmos:", WHITE, BLACK, 16, 0);
-	LCD_ShowFloatNum(170, 37, 31.27, 3, 2, GREEN, BLACK, 16);
-	LCD_ShowString(220, 37, (uint8_t *)"C", WHITE, BLACK, 16, 0);
-
-	LCD_DrawLine(10, 60, 10, 135, WHITE);
-	LCD_DrawLine(230, 60, 230, 135, WHITE);
-
-	LCD_ShowString(20, 40, (uint8_t *)"Mode :", WHITE, BLACK, 16, 0);
-	LCD_ShowString(20, 60, (uint8_t *)"Iq.  :", WHITE, BLACK, 16, 0);
-	LCD_ShowString(20, 80, (uint8_t *)"Vel. :", WHITE, BLACK, 16, 0);
-	LCD_ShowString(20, 100,(uint8_t *)"Pos. :", WHITE, BLACK, 16, 0);
-	LCD_ShowString(20, 120,(uint8_t *)"Lim. :", WHITE, BLACK, 16, 0);
-
-	switch (UsrConfig.control_mode)
-	{
-		case CONTROL_MODE_TORQUE_RAMP:
-			LCD_ShowString(76, 40, (uint8_t *)"[Tor.]", WHITE, BLACK, 16, 0);
-		break;
-		case CONTROL_MODE_VELOCITY_RAMP:
-			LCD_ShowString(76, 40, (uint8_t *)"[Vel.]", WHITE, BLACK, 16, 0);
-		break;
-		case CONTROL_MODE_POSITION_RAMP:
-			LCD_ShowString(76, 40, (uint8_t *)"[Pos.]", WHITE, BLACK, 16, 0);
-		break;
-		case CONTROL_MODE_POSITION_PROFILE:
-			LCD_ShowString(76, 40, (uint8_t *)"[PV.]", WHITE, BLACK, 16, 0);
-		break;
-		default:
-			break;
-	}
-
-	/* Iq */
-	LCD_ShowFloatNum(68, 60, Foc.i_q_filt, 3, 2, GREEN, BLACK, 16);
-	LCD_ShowString(124, 60, (uint8_t *)"->", WHITE, BLACK, 16, 0);
-	if (UsrConfig.control_mode == CONTROL_MODE_TORQUE_RAMP)
-	{
-		LCD_ShowFloatNum(140, 60, Foc.target_i_q, 3, 2, BRRED, BLACK, 16);
-	}
-	else
-	{
-		LCD_ShowFloatNum(140, 60, Foc.target_i_q, 3, 2, GREEN, BLACK, 16);
-	}
-	LCD_ShowString(196, 60, (uint8_t *)"A", WHITE, BLACK, 16, 0);
-	/* Vel */
-	LCD_ShowFloatNum(68, 80, Foc.velocity_filt, 4, 0, GREEN, BLACK, 16);
-	LCD_ShowString(124, 80, (uint8_t *)"->", WHITE, BLACK, 16, 0);
-	if (UsrConfig.control_mode == CONTROL_MODE_VELOCITY_RAMP)
-	{
-		LCD_ShowFloatNum(140, 80, Foc.target_velocity, 4, 0, BRRED, BLACK, 16);
-	}
-	else
-	{
-		LCD_ShowFloatNum(140, 80, Foc.target_velocity, 4, 0, GREEN, BLACK, 16);
-	}
-	LCD_ShowString(196, 80, (uint8_t *)"r/s", WHITE, BLACK, 16, 0);
-	/* Pos */
-	LCD_ShowFloatNum(68, 100, Foc.position, 4, 0, GREEN, BLACK, 16);
-	LCD_ShowString(124, 100, (uint8_t *)"->", WHITE, BLACK, 16, 0);
-	if (UsrConfig.control_mode == CONTROL_MODE_POSITION_RAMP || UsrConfig.control_mode == CONTROL_MODE_POSITION_PROFILE)
-	{
-		LCD_ShowFloatNum(140, 100, Foc.target_position, 4, 0, BRRED, BLACK, 16);
-	}
-	else
-	{
-		LCD_ShowFloatNum(140, 100, Foc.target_position, 4, 0, GREEN, BLACK, 16);
-	}
-	LCD_ShowString(196, 100, (uint8_t *)"rad", WHITE, BLACK, 16, 0);
-	/* Lim */
-	switch (UsrConfig.control_mode)
-	{
-		case CONTROL_MODE_TORQUE_RAMP:
-			LCD_ShowFloatNum(68, 120, Foc.pid_i_q.output_prev, 3, 2, GREEN, BLACK, 16);
-			LCD_ShowString(124, 120, (uint8_t *)"->", WHITE, BLACK, 16, 0);
-			LCD_ShowFloatNum(140, 120, Foc.pid_i_q.limit, 3, 2, GREEN, BLACK, 16);
-			LCD_ShowString(196, 120, (uint8_t *)"V", WHITE, BLACK, 16, 0);
-		break;
-		case CONTROL_MODE_VELOCITY_RAMP:
-			LCD_ShowFloatNum(68, 120, Foc.i_q_filt, 3, 2, GREEN, BLACK, 16);
-			LCD_ShowString(124, 120, (uint8_t *)"->", WHITE, BLACK, 16, 0);
-			LCD_ShowFloatNum(140, 120, Foc.pid_velocity.limit, 3, 2, GREEN, BLACK, 16);
-			LCD_ShowString(196, 120, (uint8_t *)"A", WHITE, BLACK, 16, 0);
-		break;
-		case CONTROL_MODE_POSITION_RAMP:
-			LCD_ShowFloatNum(68, 120, Foc.i_q_filt, 3, 2, GREEN, BLACK, 16);
-			LCD_ShowString(124, 120, (uint8_t *)"->", WHITE, BLACK, 16, 0);
-			LCD_ShowFloatNum(140, 120, Foc.pid_position.limit, 3, 2, GREEN, BLACK, 16);
-			LCD_ShowString(196, 120, (uint8_t *)"A", WHITE, BLACK, 16, 0);
-		break;
-		case CONTROL_MODE_POSITION_PROFILE:
-			LCD_ShowFloatNum(68, 120, Foc.i_q_filt, 3, 2, GREEN, BLACK, 16);
-			LCD_ShowString(124, 120, (uint8_t *)"->", WHITE, BLACK, 16, 0);
-			LCD_ShowFloatNum(140, 120, Foc.pid_velocity.limit, 3, 2, GREEN, BLACK, 16);
-			LCD_ShowString(196, 120, (uint8_t *)"A", WHITE, BLACK, 16, 0);
-		break;
-		default:
-			break;
-	}
+	// if (Foc.is_armed == !TRUE)
+	// {
+	// 	LCD_ShowString(10, 5,(uint8_t *)"[ERROR]", BRRED, BLACK, 32, 0);
+	// }
+	// else
+	// {
+	// 	LCD_ShowString(10, 5,(uint8_t *)"[READY]", GREEN, BLACK, 32, 0);
+	// }
+	//
+	//
+	// LCD_ShowString(130, 5,(uint8_t *)"Vbus:", WHITE, BLACK, 16, 0);
+	// LCD_ShowFloatNum(170, 5, 24.12, 3, 2, GREEN, BLACK, 16);
+	// LCD_ShowString(220, 5, (uint8_t *)"V", WHITE, BLACK, 16, 0);
+	//
+	// LCD_ShowString(130, 21,(uint8_t *)"Ibus:", WHITE, BLACK, 16, 0);
+	// LCD_ShowFloatNum(170, 21, 00.00, 3, 2, GREEN, BLACK, 16);
+	// LCD_ShowString(220, 21, (uint8_t *)"A", WHITE, BLACK, 16, 0);
+	//
+	// LCD_ShowString(130, 37,(uint8_t *)"Tmos:", WHITE, BLACK, 16, 0);
+	// LCD_ShowFloatNum(170, 37, 31.27, 3, 2, GREEN, BLACK, 16);
+	// LCD_ShowString(220, 37, (uint8_t *)"C", WHITE, BLACK, 16, 0);
+	//
+	// LCD_DrawLine(10, 60, 10, 135, WHITE);
+	// LCD_DrawLine(230, 60, 230, 135, WHITE);
+	//
+	// LCD_ShowString(20, 40, (uint8_t *)"Mode :", WHITE, BLACK, 16, 0);
+	// LCD_ShowString(20, 60, (uint8_t *)"Iq.  :", WHITE, BLACK, 16, 0);
+	// LCD_ShowString(20, 80, (uint8_t *)"Vel. :", WHITE, BLACK, 16, 0);
+	// LCD_ShowString(20, 100,(uint8_t *)"Pos. :", WHITE, BLACK, 16, 0);
+	// LCD_ShowString(20, 120,(uint8_t *)"Lim. :", WHITE, BLACK, 16, 0);
+	//
+	// switch (UsrConfig.control_mode)
+	// {
+	// 	case CONTROL_MODE_TORQUE_RAMP:
+	// 		LCD_ShowString(76, 40, (uint8_t *)"[Tor.]", WHITE, BLACK, 16, 0);
+	// 	break;
+	// 	case CONTROL_MODE_VELOCITY_RAMP:
+	// 		LCD_ShowString(76, 40, (uint8_t *)"[Vel.]", WHITE, BLACK, 16, 0);
+	// 	break;
+	// 	case CONTROL_MODE_POSITION_RAMP:
+	// 		LCD_ShowString(76, 40, (uint8_t *)"[Pos.]", WHITE, BLACK, 16, 0);
+	// 	break;
+	// 	case CONTROL_MODE_POSITION_PROFILE:
+	// 		LCD_ShowString(76, 40, (uint8_t *)"[PV.]", WHITE, BLACK, 16, 0);
+	// 	break;
+	// 	default:
+	// 		break;
+	// }
+	//
+	// /* Iq */
+	// LCD_ShowFloatNum(68, 60, Foc.i_q_filt, 3, 2, GREEN, BLACK, 16);
+	// LCD_ShowString(124, 60, (uint8_t *)"->", WHITE, BLACK, 16, 0);
+	// if (UsrConfig.control_mode == CONTROL_MODE_TORQUE_RAMP)
+	// {
+	// 	LCD_ShowFloatNum(140, 60, Foc.target_i_q, 3, 2, BRRED, BLACK, 16);
+	// }
+	// else
+	// {
+	// 	LCD_ShowFloatNum(140, 60, Foc.target_i_q, 3, 2, GREEN, BLACK, 16);
+	// }
+	// LCD_ShowString(196, 60, (uint8_t *)"A", WHITE, BLACK, 16, 0);
+	// /* Vel */
+	// LCD_ShowFloatNum(68, 80, Foc.velocity_filt, 4, 0, GREEN, BLACK, 16);
+	// LCD_ShowString(124, 80, (uint8_t *)"->", WHITE, BLACK, 16, 0);
+	// if (UsrConfig.control_mode == CONTROL_MODE_VELOCITY_RAMP)
+	// {
+	// 	LCD_ShowFloatNum(140, 80, Foc.target_velocity, 4, 0, BRRED, BLACK, 16);
+	// }
+	// else
+	// {
+	// 	LCD_ShowFloatNum(140, 80, Foc.target_velocity, 4, 0, GREEN, BLACK, 16);
+	// }
+	// LCD_ShowString(196, 80, (uint8_t *)"r/s", WHITE, BLACK, 16, 0);
+	// /* Pos */
+	// LCD_ShowFloatNum(68, 100, Foc.position, 4, 0, GREEN, BLACK, 16);
+	// LCD_ShowString(124, 100, (uint8_t *)"->", WHITE, BLACK, 16, 0);
+	// if (UsrConfig.control_mode == CONTROL_MODE_POSITION_RAMP || UsrConfig.control_mode == CONTROL_MODE_POSITION_PROFILE)
+	// {
+	// 	LCD_ShowFloatNum(140, 100, Foc.target_position, 4, 0, BRRED, BLACK, 16);
+	// }
+	// else
+	// {
+	// 	LCD_ShowFloatNum(140, 100, Foc.target_position, 4, 0, GREEN, BLACK, 16);
+	// }
+	// LCD_ShowString(196, 100, (uint8_t *)"rad", WHITE, BLACK, 16, 0);
+	// /* Lim */
+	// switch (UsrConfig.control_mode)
+	// {
+	// 	case CONTROL_MODE_TORQUE_RAMP:
+	// 		LCD_ShowFloatNum(68, 120, Foc.pid_i_q.output_prev, 3, 2, GREEN, BLACK, 16);
+	// 		LCD_ShowString(124, 120, (uint8_t *)"->", WHITE, BLACK, 16, 0);
+	// 		LCD_ShowFloatNum(140, 120, Foc.pid_i_q.limit, 3, 2, GREEN, BLACK, 16);
+	// 		LCD_ShowString(196, 120, (uint8_t *)"V", WHITE, BLACK, 16, 0);
+	// 	break;
+	// 	case CONTROL_MODE_VELOCITY_RAMP:
+	// 		LCD_ShowFloatNum(68, 120, Foc.i_q_filt, 3, 2, GREEN, BLACK, 16);
+	// 		LCD_ShowString(124, 120, (uint8_t *)"->", WHITE, BLACK, 16, 0);
+	// 		LCD_ShowFloatNum(140, 120, Foc.pid_velocity.limit, 3, 2, GREEN, BLACK, 16);
+	// 		LCD_ShowString(196, 120, (uint8_t *)"A", WHITE, BLACK, 16, 0);
+	// 	break;
+	// 	case CONTROL_MODE_POSITION_RAMP:
+	// 		LCD_ShowFloatNum(68, 120, Foc.i_q_filt, 3, 2, GREEN, BLACK, 16);
+	// 		LCD_ShowString(124, 120, (uint8_t *)"->", WHITE, BLACK, 16, 0);
+	// 		LCD_ShowFloatNum(140, 120, Foc.pid_position.limit, 3, 2, GREEN, BLACK, 16);
+	// 		LCD_ShowString(196, 120, (uint8_t *)"A", WHITE, BLACK, 16, 0);
+	// 	break;
+	// 	case CONTROL_MODE_POSITION_PROFILE:
+	// 		LCD_ShowFloatNum(68, 120, Foc.i_q_filt, 3, 2, GREEN, BLACK, 16);
+	// 		LCD_ShowString(124, 120, (uint8_t *)"->", WHITE, BLACK, 16, 0);
+	// 		LCD_ShowFloatNum(140, 120, Foc.pid_velocity.limit, 3, 2, GREEN, BLACK, 16);
+	// 		LCD_ShowString(196, 120, (uint8_t *)"A", WHITE, BLACK, 16, 0);
+	// 	break;
+	// 	default:
+	// 		break;
+	// }
 }
 
 
